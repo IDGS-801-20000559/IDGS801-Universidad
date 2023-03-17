@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content%}
+{%from "_macros.html" import render_field%}
+
+<div class="container">
+    <h3>PROFESORES <a href="/agregar-profe" class="btn btn-success"> Agregar <i class="icon-plus icon-white"></i></a>
+    </h3>
+    <!--
+        <div class="row control-group">
+            <center>
+                {{render_field(form.busqueda,class='form-control span-bg-2')}}
+                <a href="/" class="btn btn-primary">Buscar <i class="icon-search icon-white"></i></a>
+            </center>
+        </div>
+    -->
+    {% for profe in profes %}
+    <div class="row">
+        <div class="span-1"></div>
+        <div class="span-10" id="cardProfes">
+            <div class='card mb-3'>
+                <div class='row g-0'>
+                    <div class='span-md-4'>
+                        <img src='static/img/profesor.png' width="200" class='img-fluid rounded-start'
+                            alt='icono-profe'>
+                    </div>
+                    <div class='span-md-8'>
+                        <div class='card-body'>
+                            <h4 class='card-title'>Prof(a). {{profe.nombre}} {{profe.apellidos}}</h4>
+                            <h6 class='card-text'>Grupo asignado</h6>
+                            <p class='card-text'>{{profe.grupo}}</p>
+                            <h6 class='card-text'>Materia que imparte</h6>
+                            <p class='card-text'>{{profe.materia}}</p>
+                            <a href="eliminar-profe?id={{profe.id}} " class="btn btn-danger"><i
+                                    class="icon-trash icon-white"></i>
+                                Eliminar
+                            </a>
+                            <a href="modificar-profe?id={{profe.id}} " class="btn btn-warning"><i
+                                    class="icon-edit icon-white"></i>
+                                Modificar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content%}
+{%from "_macros.html" import render_field%}
+
+<div class="container">
+    <form name="sent" action="/eliminar-profe?id={{profe.id}}" id="form1" method="POST">
+        <div class="row control-group">
+            <center>
+                <div class="form-group col-xs-12 float-label-form-group controls">
+                    <h2 class="text-primary">¿De verdad deseas eliminar este registro?</h2>
+                    <br>
+                <b><h3>{{profe.nombre}} {{profe.apellidos}}</h3></b>
+                    <p>será eliminad@ de forma lógica</p>
+                </div>
+            </center>
+        </div>
+        <center>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+            <input type="submit" class="btn btn-success" id="eliminar" name="eliminar" value="Sí, eliminar" />
+            <a href="profesores" class="btn btn-danger">
+                No, cancelar
+            </a>
+        </center>
+    </form>
+    {% endblock %}

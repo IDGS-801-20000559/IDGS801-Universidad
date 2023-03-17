@@ -1,0 +1,36 @@
+{% extends "layout.html" %} 
+ 
+ {% block content%}
+   {%from "_macros.html" import render_field%}
+ 
+   <div class="container">
+        <form name="sent" action="/eliminar" id="form1" method="POST">
+            <h4>Estas a punto de eliminar los siguientes datos:</h4>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 float-label-form-group controls">
+                    {{render_field(form.id,class='form-control', readonly='')}}
+                </div>
+            </div>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 float-label-form-group controls">
+                    {{render_field(form.nombre,class='form-control', readonly='')}}
+                </div>
+            </div>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 float-label-form-group controls">
+                    {{render_field(form.apellidos,class='form-control disable', readonly='')}}
+                </div>
+            </div>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 float-label-form-group controls">
+                    {{render_field(form.email,class='form-control', readonly='')}}
+                </div>
+            </div>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+            <p>¿Estas seguro que quiere eliminar?</p>
+            <input type="submit" class="btn btn-danger" id="eliminar" name="eliminar" value="Sí, eliminar"/>
+            <a href="ABCompleto" class="btn btn-primary">
+                No, regresar
+            </a>
+        </form>
+  {% endblock %}
